@@ -1,6 +1,5 @@
 package com.matheus.gcloudupload.services;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -8,7 +7,7 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 import java.util.HexFormat;
 
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,7 +45,7 @@ public class GCloudStorageServiceTests {
             any(BlobTargetOption.class))
         ).thenReturn(mockedBlob);
 
-        Assertions.assertThat(gCloudStorageService.store(mockedMultipartFile)).isEqualTo("http://successfull-test/");
+        Assertions.assertEquals("http://successfull-test/", gCloudStorageService.store(mockedMultipartFile));
     }
 
     @Test
@@ -67,6 +66,6 @@ public class GCloudStorageServiceTests {
             any(BlobTargetOption.class))
         ).thenThrow(IllegalStateException.class);
 
-        assertThrows(RuntimeException.class, () -> gCloudStorageService.store(mockedMultipartFile));
+        Assertions.assertThrows(RuntimeException.class, () -> gCloudStorageService.store(mockedMultipartFile));
     }
 }
