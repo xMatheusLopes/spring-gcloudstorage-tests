@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HexFormat;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +29,7 @@ public class GCloudStorageServiceTests {
     Storage mockedStorage = mock(Storage.class);
 
     @Test
+    @DisplayName("Test if gcloud storage is working")
     void storeSuccess() throws IOException {
         Blob mockedBlob = mock(Blob.class);
         MultipartFile mockedMultipartFile = mock(MultipartFile.class);
@@ -35,7 +37,7 @@ public class GCloudStorageServiceTests {
         ReflectionTestUtils.setField(gCloudStorageService, "storage", this.mockedStorage);
 
         when(mockedMultipartFile.getOriginalFilename()).thenReturn("FileName");
-        when(mockedMultipartFile.getBytes()).thenReturn(HexFormat.of().parseHex("e04fd020ea3a6910a2d808002b30309d"));
+        when(mockedMultipartFile.getBytes()).thenReturn("Hello".getBytes());
 
         when(mockedBlob.getMediaLink()).thenReturn("http://successfull-test/");
 
@@ -49,6 +51,7 @@ public class GCloudStorageServiceTests {
     }
 
     @Test
+    @DisplayName("Test if gcloud storage returns fail")
     void storeFail() throws IOException {
         Blob mockedBlob = mock(Blob.class);
         MultipartFile mockedMultipartFile = mock(MultipartFile.class);
