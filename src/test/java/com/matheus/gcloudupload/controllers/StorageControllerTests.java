@@ -1,13 +1,10 @@
 package com.matheus.gcloudupload.controllers;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-
-import java.io.IOException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
