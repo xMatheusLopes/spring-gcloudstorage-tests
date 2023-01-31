@@ -1,6 +1,7 @@
 package com.matheus.gcloudupload.controllers;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,10 @@ public class StorageController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) throws IOException {
-        return ResponseEntity.ok(storageService.store(file));
+    public ResponseEntity<HashMap<String, String>> upload(@RequestParam("file") MultipartFile file) throws IOException {
+        HashMap<String, String> response = new HashMap<>();
+        response.put("url", storageService.store(file));
+        
+        return ResponseEntity.ok(response);
     }
 }
