@@ -51,6 +51,6 @@ public class StorageControllerTests {
             .perform(multipart("/upload")
             .file(file))
             .andExpect(status().isOk())
-            .andExpect(content().string("http://success"));
+            .andExpect(content().string("{\"url\":\"http://success\"}"));
     }
 }
